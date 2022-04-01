@@ -1,26 +1,43 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
+import {
+  BrowserRouter as Router,
+  Link,
+  Routes,
+  Route
+} from 'react-router-dom';
 
 //importing components
-import Header from './components/Header';
-import Home from './components/Home';
-import Movies from './components/Movies';
-import TvShows from './components/TvShows';
-import Footer from './components/Footer';
-
-
+import Home from './Pages/Home';
+import Movies from './Pages/Movies';
+import TvShows from './Pages/TvShows';
+import Carousel, {CarouselItem} from './Components/MainCarousel';
 
 export default class App extends Component{
 
   render(){
     return(
-      <>
-      <Header/>
-      <Home/>
-      <Movies/>
-      <TvShows/>
-      <Footer/>
-      </>
+      <Router>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="Movies">Filmes</Link>
+            </li>
+            <li>
+              <Link to="TvShows">Séries</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home/>}>Home</Route>
+          <Route path='Movies' element={<Movies/>}>Filmes</Route>
+          <Route path="TvShows" element={<TvShows/>}>Séries</Route>
+        </Routes>
+      </Router>
     )
   };
 };

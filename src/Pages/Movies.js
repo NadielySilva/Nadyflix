@@ -5,7 +5,7 @@ const apiMovies = axios.create({
   baseURL: "https://api.themoviedb.org/3/movie/popular?api_key=3bf0cb63f825fda304886553f468ea79&language=pt-BR&page=1"
 });
 
-export default class Home extends Component{
+export default class Movies extends Component{
 
   state = {
     movieList: []
