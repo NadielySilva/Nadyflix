@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
   BrowserRouter as Router,
   Link,
@@ -11,7 +10,7 @@ import {
 import Home from './Pages/Home';
 import Movies from './Pages/Movies';
 import TvShows from './Pages/TvShows';
-import Carousel, {CarouselItem} from './Components/MainCarousel';
+
 
 export default class App extends Component{
 
