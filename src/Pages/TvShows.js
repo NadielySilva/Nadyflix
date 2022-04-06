@@ -4,36 +4,41 @@ import styled from "styled-components";
 
 const Container = styled.div`
   font-family: 'Raleway', sans-serif;
-  color: #001219;
+  color: #1d3557;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 `;
 
 const SearchBox = styled.label`
-  color: #94D2BD;
-  width: 65vw;
+  font-size: 1.25em;
+  font-weight: 600;
+  color: #A8DADC;
+  letter-spacing: 1px;
+  width: 40vw;
   height: 10vh;
   display: block;
+  position: relative;
+  left: 55vw;
   border: 1px solid #94D2BD;
   border-radius: 5px 5px;
-  border-focus: #94D2BD;
   margin: 0;
-  padding: 0;
-  background-color: #005F73;
+  padding: 0.5%;
+  background-color: #1d3557;
 `;
 
 const Search = styled.input`
-  color: #005F73;
-  placeholder: #005F73;
-  width: 30vw;
-  height: 9.5vh;
+  font-size: 1.15em;
+  color: #1d3557;
+  letter-spacing: 1px;
+  placeholder: #457B9D;
+  width: 50%;
+  height: 95%;
   border: none;
   border-radius: 5px 5px;
-  border-focus: #94D2BD;
-  margin: 0;
+  margin: 0.5%;
   padding: 0;
-  background-color: #94D2BD;
+  background-color: #A8DADC;
 `;
 
 const Title = styled.h2`
@@ -41,7 +46,7 @@ const Title = styled.h2`
   font-weight: 600;
 `;
 
-const Title2 = styled.h2`
+const TvShowName = styled.h2`
   font-size: 1.5rem;
   font-weight: 600;
 `;
@@ -74,7 +79,7 @@ const StyledList = styled.li`
   border-radius: 4%;
   padding: 3%;
   margin: 2%;
-  background-color: pink;
+  background-color: #A8DADC;
 `;
 
 const ListTextBox = styled.div`
@@ -88,13 +93,14 @@ const ListTextBox = styled.div`
 `;
 
 const Rating = styled.p`
-  width: 15vw;
-  height: 10vh;
+  font-weight: 600;
+  width: 15%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  background-color: green;
+  border-radius: 5px;
+  background-color: #E63946;
 `;
 
 const apiTvShows = axios.create({
@@ -161,7 +167,7 @@ export default class TvShows extends Component{
     return(
       <Container>
         <SearchBox>O que quer assistir hoje?: <Search type="text"
-        placeholder="Digite aqui"
+        placeholder="Digite o nome da série"
         onChange={this.TvShowFilter}
         /></SearchBox>
         <Title>Séries Populares</Title>
@@ -171,8 +177,9 @@ export default class TvShows extends Component{
             key={item.id}>
               <Poster src={item.poster_path}/>
               <ListTextBox>
-                <Title2>{item.name}</Title2>
+                <TvShowName>{item.name}</TvShowName>
                 <Rating>{item.vote_average}/10.0</Rating>
+                <p>{item.overview}</p>
               </ListTextBox>
             </StyledList>
           ))}
