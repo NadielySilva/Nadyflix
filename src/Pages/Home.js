@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Carousel, { CarouselItem } from "../Components/MainCarousel";
 
+
 export default function Home(){
 
   return(

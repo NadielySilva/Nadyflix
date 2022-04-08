@@ -13,57 +13,34 @@ const Container = styled.div`
 `;
 
 const SearchBox = styled.label`
-  font-size: 1.25em;
   font-weight: 600;
   color: #A8DADC;
   letter-spacing: 1px;
-  width: 40vw;
-  height: 10vh;
+  width: 44vw;
+  height: 8vh;
   display: block;
   position: relative;
-  left: 55vw;
-  border: 1px solid #94D2BD;
-  border-radius: 5px 5px;
+  left: 52%;
+  border-radius: 10px 10px;
   margin: 0;
-  padding: 0.5%;
+  padding: 5px;
   background-color: #1d3557;
 `;
 
 const Search = styled.input`
-  font-size: 1.15em;
   color: #1d3557;
   letter-spacing: 1px;
   placeholder: #457B9D;
   width: 50%;
   height: 95%;
   border: none;
-  border-radius: 5px 5px;
-  margin: 0.5%;
-  padding: 0;
+  border-radius: 0px 10px 10px 0px;
   background-color: #A8DADC;
 `;
 
 const Title = styled.h2`
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 600;
-`;
-
-const MovieName = styled.h2`
-  font-size: 1.5rem;
-  font-weight: 600;
-`;
-
-const Poster = styled.img`
-  width: auto;
-  height: 50vh;
-  object-fit: cover;
-  border-radius: 3vh 2.5vw;
-
-  &:hover{
-    width: auto;
-    height: 55vh;
-    cursor: pointer;
-  }
 `;
 
 const ListBox = styled.ul`
@@ -78,23 +55,50 @@ const StyledList = styled.li`
   height: 55vh;
   display: flex;
   align-items: center;
-  border-radius: 4%;
-  padding: 3%;
-  margin: 2%;
+  border-radius: 18px;
+  padding: 24px;
+  margin: 12px;
   background-color: #A8DADC;
 `;
 
+const MovieName = styled.h2`
+  font-size: 2rem;
+  font-weight: 600;
+`;
+
+const PosterBox = styled.div`
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Poster = styled.img`
+  width: auto;
+  height: 98%;
+  object-fit: cover;
+  border-radius: 12px 12px;
+
+  &:hover{
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+  }
+`;
+
 const ListTextBox = styled.div`
-  width: 80vw;
-  height: 50vh;
+  width: 75%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  margin-left: 2vw;
+  padding: 12px;
+  margin: 18px;
 `;
 
 const Rating = styled.p`
+  font-size: 1.25rem;
   font-weight: 600;
   width: 15%;
   height: 10%;
@@ -103,6 +107,27 @@ const Rating = styled.p`
   align-items: center;
   border-radius: 5px;
   background-color: #E63946;
+`;
+
+const Overview = styled.p`
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: justify;
+  width: 95%;
+  height: 40%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
 `;
 
 
@@ -153,12 +178,7 @@ export default class Movies extends Component{
         return true;
       }
 
-      const noMovies = () => {
-        if(!!item.title){
-          return;
-          <p>hum... Ainda não temos esse filme no nosso catálogo</p>
-        }
-      };
+      
     });
 
     this.setState({
@@ -178,11 +198,13 @@ export default class Movies extends Component{
           {this.state.filteredMovies.map((item) => (
             <StyledList 
             key={item.id}>
-              <Poster src={item.poster_path}/>
+              <PosterBox>
+                <Poster src={item.poster_path}/>
+              </PosterBox>
               <ListTextBox>
-                <MovieName>{item.title}</MovieName>   
+                <MovieName>{item.title === undefined ? "hum... Ainda não temos esse filme no nosso catálogo" : item.title}</MovieName>   
                 <Rating>{item.vote_average}/10.0</Rating>
-                <p>{item.overview}</p>
+                <Overview>{item.overview}</Overview>
               </ListTextBox>
             </StyledList>
           ))}
@@ -192,3 +214,5 @@ export default class Movies extends Component{
   }
 
 };
+
+{/* <p style={item.overview === "" ?  {overflow:"none", color:"white",  margin:"10vh 1vw"} : {color:"white", margin:"7vh 1vw", textAlign:"justify", height:"12vh", overflowY:"scroll", padding:"0 1vw"}}> {item.overview === "" ? "Poxa, não temos a descrição desse filme :(" : item.overview} </p> */}
