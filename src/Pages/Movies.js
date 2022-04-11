@@ -3,35 +3,37 @@ import axios from "axios";
 import styled from "styled-components";
 
 
-
 const Container = styled.div`
   font-family: 'Raleway', sans-serif;
   color: #1d3557;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 `;
 
 const SearchBox = styled.label`
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 0.75em;
   color: #A8DADC;
-  letter-spacing: 1px;
-  width: 44vw;
+  letter-spacing: 0.5px;
+  width: 42vw;
   height: 8vh;
-  display: block;
   position: relative;
-  left: 52%;
+  left: 25vw;
   border-radius: 10px 10px;
-  margin: 0;
+  margin: 12px;
   padding: 5px;
   background-color: #1d3557;
 `;
 
 const Search = styled.input`
   color: #1d3557;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   placeholder: #457B9D;
-  width: 50%;
+  width: 22.75vw;
   height: 95%;
   border: none;
   border-radius: 0px 10px 10px 0px;
