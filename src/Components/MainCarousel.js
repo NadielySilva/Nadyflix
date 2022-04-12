@@ -3,12 +3,11 @@ import styled from "styled-components";
 import { useSwipeable } from "react-swipeable"
 
 const StyledCarouselItem = styled.div`
-    height: 40vh;   
+    color; #000;
+    height: 60vh;   
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: pink;
-    color; #000;
 `;
 
 const StyledCarousel = styled.div`
@@ -76,14 +75,14 @@ const Carousel = ({ children }) => {
             {...handlers}
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}>
-                <StyledInner style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+                <StyledInner style={{ transform: `translateX(-${activeIndex * 20}%)` }}>
                     {React.Children.map(children, (child, index) => {
-                        return React.cloneElement (child, { width: "100%" });
+                        return React.cloneElement (child, { width: "25%" });
                     })}
                 </StyledInner>
 
                 <StyledIndicators>
-                    <StyledButton onClick={() => {updateIndex (activeIndex - 1)}}>Prev</StyledButton>
+                    <StyledButton onClick={() => {updateIndex (activeIndex - 3)}}>Prev</StyledButton>
                     {/* {React.Children.map(children, ( child, index) => {
                         return(
                             <button
@@ -97,7 +96,7 @@ const Carousel = ({ children }) => {
                         )
                     })} */}
 
-                    <StyledButton onClick={() => {updateIndex (activeIndex + 1)}}>Next</StyledButton>
+                    <StyledButton onClick={() => {updateIndex (activeIndex + 3)}}>Next</StyledButton>
                 </StyledIndicators>
             </StyledCarousel>
     );

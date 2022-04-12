@@ -1,7 +1,35 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styled from 'styled-components';
 
-import Carousel from "../Components/MainCarousel";
+//importing components
+import Carousel, { CarouselItem } from "../Components/MainCarousel";
+import Footer from "../Components/Footer";
+
+
+const Container = styled.div`
+  font-family: 'Raleway', sans-serif;
+  font-weight: 600;
+  color: #F1FAEE;
+`;
+
+const SubContainer = styled.div`
+  font-family: 'Raleway', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 600;
+  color: #F1FAEE;
+  margin: 12px;
+`;
+
+const Poster = styled.img`
+  width: auto;
+  height: 85%;
+  border-radius: 18px;
+
+  &:hover{
+    cursor: pointer;
+  }
+`;
 
 const apiMovies = axios.create({
   baseURL: "https://api.themoviedb.org/3/movie/popular?api_key=3bf0cb63f825fda304886553f468ea79&language=pt-BR&page=1"
@@ -15,20 +43,17 @@ export default class Home extends Component{
 
   state = {
     TvShowList: [],
-    movieList: [],
+    movieList: []
   };
 
   async componentDidMount(){
     this.getTvShow();
-  };
-
-  async componentDidMount(){
     this.getMovies();
   };
 
   getTvShow = async() => {
     const response = await apiTvShows.get()
-    //console.log(response.data.results)
+    // console.log(response)
 
     const TvShow = response.data.results.map((item) => {
       return{
@@ -38,9 +63,9 @@ export default class Home extends Component{
     });
 
     this.setState({
-      TvShowList: TvShow,
+      TvShowList: TvShow
     });
-  };
+  }
 
   getMovies = async() => {
     const response = await apiMovies.get()
@@ -60,20 +85,27 @@ export default class Home extends Component{
 
   render(){
     return(
-      <div>
-        {/* <p>Séries</p>
-        {this.state.TvShowList.map((item) => (
-          <div>            
-            <img src={item.poster_path}/>
-          </div>
-        ))} */}
-        <p>Filmes</p>
-        {this.state.movieList.map((item) => (
-          <div>            
-            <img src={item.poster_path}/>
-          </div>
-        ))}
-      </div>
+      <Container>
+        <SubContainer>
+          <p>Filmes Populares</p>
+          <Carousel >
+            {this.state.movieList.map((item) => (
+              <CarouselItem>
+                <Poster src={item.poster_path}/>
+              </CarouselItem>
+            ))}
+          </Carousel>
+          <p>Séries Populares</p>
+          <Carousel >
+            {this.state.TvShowList.map((item) => (
+              <CarouselItem>
+                <Poster src={item.poster_path}/>
+              </CarouselItem>
+            ))}
+          </Carousel>
+        </SubContainer>
+        <Footer/>
+      </Container>
     )
   }
 }

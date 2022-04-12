@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
+//importing components
+import Footer from "../Components/Footer";
+
+
 const Container = styled.div`
   font-family: 'Raleway', sans-serif;
   color: #1d3557;
@@ -14,25 +18,25 @@ const Container = styled.div`
 `;
 
 const SearchBox = styled.label`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.75em;
-  color: #A8DADC;
+  color: #1D3557;
   letter-spacing: 0.5px;
   width: 42vw;
   height: 8vh;
   position: relative;
   left: 25vw;
   border-radius: 10px 10px;
-  margin: 12px;
-  padding: 5px;
-  background-color: #1d3557;
+  margin-top: 12px;
+  padding: 4px;
+  background-color: #E63946;
 `;
 
 const Search = styled.input`
   color: #1d3557;
   letter-spacing: 0.5px;
   placeholder: #457B9D;
-  width: 22.75vw;
+  width: 25.5vw;
   height: 95%;
   border: none;
   border-radius: 0px 10px 10px 0px;
@@ -42,6 +46,7 @@ const Search = styled.input`
 const Title = styled.h2`
   font-size: 2.75rem;
   font-weight: 600;
+  color: #F1FAEE;
 `;
 
 const ListBox = styled.ul`
@@ -116,20 +121,21 @@ const Overview = styled.div`
   text-align: justify;
   width: 95%;
   height: 40%;
-  overflow-y: auto;
+  overflow: auto;
 
-  ::-webkit-scrollbar{
-    width: 7px;
-    height: 3px;
-    background-color: blue;
-  }
+  // ::-webkit-scrollbar{
+  //   width: 10px;
+  // }
 
-  ::-webkit-scrollbar-thumb{
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    height: 30px;
-    background-color: blue;
-  }
+  // ::-webkit-scrollbar-track{
+  //   background-color: blue;
+  // }
+
+  // ::-webkit-scrollbar-thumb{
+  //   background: red;
+  //   border-radius: 5px;
+  // }
+
 `;
 
 const apiTvShows = axios.create({
@@ -159,22 +165,22 @@ export default class TvShows extends Component{
     });
 
     this.setState({
-      movieList: TvShow,
+      TvShowList: TvShow,
       filteredTvShow: TvShow
     });
   }
 
   TvShowFilter = (event) => {
-    const { movieList } = this.state;
+    const { TvShowList } = this.state;
 
     if (event.target.value === ""){
       this.setState({
-        filteredTvShow: movieList
+        filteredTvShow: TvShowList
       });
       return;
     };
 
-    const convertedFilteredTvShow = movieList.filter((item) => {
+    const convertedFilteredTvShow = TvShowList.filter((item) => {
       if (item.name.toLowerCase().includes(event.target.value.toLowerCase())){
         return true;
       }
@@ -215,6 +221,7 @@ export default class TvShows extends Component{
             </StyledList>
           ))}
         </ListBox>
+        <Footer/>
       </Container>
     )
   }

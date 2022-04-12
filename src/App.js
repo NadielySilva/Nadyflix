@@ -6,33 +6,40 @@ import {
   Route
 } from 'react-router-dom';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 //importing components
 import Home from './Pages/Home';
 import Movies from './Pages/Movies';
 import TvShows from './Pages/TvShows';
 
+const GlobalStyle = createGlobalStyle`
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  body{
+    background-color: #1D3557;
+  }
+`;
+
 const Container = styled.div`
   font-family: 'Raleway', sans-serif;
   font-weight: 600;
-  font-size: 1.25rem;
   width: 100vw;
   height: auto;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 `;
 
 const Menu = styled.nav`
-  width: 100vw;
-  height: 18vh;
-  background-color: pink;
+  height: 15vh;
+  background-color: #E63946;
 `;
 
 const MenuList = styled.ul`
-  height: 18vh;
-  text-decoration: none;
+  font-size: 1.5em;
+  height: 15vh;
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -40,22 +47,28 @@ const MenuList = styled.ul`
   justify-content: space-evenly;
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: #1D3557;
+`;
+
 export default class App extends Component{
 
   render(){
     return(
       <Container>
+        <GlobalStyle/>
         <Router>
           <Menu>
             <MenuList>
               <li>
-                <Link to="/">Home</Link>
+                <StyledLink to="/">Home</StyledLink>
               </li>
               <li>
-                <Link to="Movies">Filmes</Link>
+                <StyledLink to="Movies">Filmes</StyledLink>
               </li>
               <li>
-                <Link to="TvShows">Séries</Link>
+                <StyledLink to="TvShows">Séries</StyledLink>
               </li>
             </MenuList>
           </Menu>

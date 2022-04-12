@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
+//importing components
+import Footer from "../Components/Footer";
+
 
 const Container = styled.div`
   font-family: 'Raleway', sans-serif;
@@ -15,25 +18,25 @@ const Container = styled.div`
 `;
 
 const SearchBox = styled.label`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 0.75em;
-  color: #A8DADC;
+  color: #1D3557;
   letter-spacing: 0.5px;
   width: 42vw;
   height: 8vh;
   position: relative;
   left: 25vw;
   border-radius: 10px 10px;
-  margin: 12px;
-  padding: 5px;
-  background-color: #1d3557;
+  margin-top: 12px;
+  padding: 4px;
+  background-color: #E63946;
 `;
 
 const Search = styled.input`
   color: #1d3557;
   letter-spacing: 0.5px;
   placeholder: #457B9D;
-  width: 22.75vw;
+  width: 25.5vw;
   height: 95%;
   border: none;
   border-radius: 0px 10px 10px 0px;
@@ -43,6 +46,7 @@ const Search = styled.input`
 const Title = styled.h2`
   font-size: 2.75rem;
   font-weight: 600;
+  color: #F1FAEE;
 `;
 
 const ListBox = styled.ul`
@@ -111,27 +115,28 @@ const Rating = styled.p`
   background-color: #E63946;
 `;
 
-const Overview = styled.p`
+const Overview = styled.div`
   font-size: 1rem;
   font-weight: 500;
   text-align: justify;
   width: 95%;
   height: 40%;
-  overflow-y: auto;
+  overflow: auto;
 
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
+  // ::-webkit-scrollbar{
+  //   width: 10px;
+  // }
 
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
+  // ::-webkit-scrollbar-track{
+  //   background-color: blue;
+  // }
 
-  &::-webkit-scrollbar-thumb {
-    background: #888;
-  }
+  // ::-webkit-scrollbar-thumb{
+  //   background: red;
+  //   border-radius: 5px;
+  // }
+
 `;
-
 
 const apiMovies = axios.create({
   baseURL: "https://api.themoviedb.org/3/movie/popular?api_key=3bf0cb63f825fda304886553f468ea79&language=pt-BR&page=1"
@@ -211,6 +216,7 @@ export default class Movies extends Component{
             </StyledList>
           ))}
         </ListBox>
+        <Footer/>
       </Container>
     )
   }
