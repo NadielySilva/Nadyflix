@@ -185,12 +185,12 @@ export default class TvShows extends Component{
         return true;
       }
 
-      const noTvShow = () => {
-        if(!!item.name){
-          return;
-          <p>hum... Ainda não temos esse filme no nosso catálogo</p>
-        }
-      };
+      // const noTvShow = () => {
+      //   if(!!item.name){
+      //     return;
+      //     <p>hum... Ainda não temos esse filme no nosso catálogo</p>
+      //   }
+      // };
     });
 
     this.setState({

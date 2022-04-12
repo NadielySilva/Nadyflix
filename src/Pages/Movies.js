@@ -183,9 +183,7 @@ export default class Movies extends Component{
     const convertedFilteredMovies = movieList.filter((item) => {
       if (item.title.toLowerCase().includes(event.target.value.toLowerCase())){
         return true;
-      }
-
-      
+      };
     });
 
     this.setState({
